@@ -118,8 +118,17 @@ const adicionarParticipante = (event) => {
     dataCheckIn: null,
   }
 
+  // verificar se o participante já existe
+  const participanteExiste = participantes.find((p) => p.email == participante.email)
+
+  if (participanteExiste) return alert("Email já cadastrado")
+
   participantes = [participante, ...participantes]
   atualizarLista(participantes)
+
+  // Limpar Form
+  event.target.querySelector('[name="nome"]').value = ""
+  event.target.querySelector('[name="email"]').value = ""
 }
 
 const fazerCheckIn = (event) => {
